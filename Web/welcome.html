@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome User</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+</head>
+<body>
+
+    <div class=Main-Container>
+        <h1 id=Heading></h1>
+    </div>
+
+    <style>
+        body{
+            background: wheat;
+            padding: 0px;
+            margin: 0px;
+        }
+        
+        .Main-Container{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family:cursive;
+            font-size: 3rem;
+        }
+
+        h1{
+            color: darkblue;
+            text-align: center;
+        }
+
+
+    </style>
+    
+    <script>
+        var Username = sessionStorage.getItem('Username');
+        if (Username==null)
+        {
+            document.location.replace('./index.html')
+        }
+        else {
+            console.log(Username);
+            var decryptedUsername = CryptoJS.AES.decrypt(Username,"lti123");
+            decryptedUsername=decryptedUsername.toString(CryptoJS.enc.Utf8)
+            msg="👋WELCOME BACK,"+decryptedUsername
+            document.getElementById("Heading").innerHTML =msg.toUpperCase() ;
+        }
+
+    </script>
+</body>
+</html>
